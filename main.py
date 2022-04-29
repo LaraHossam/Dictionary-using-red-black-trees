@@ -11,4 +11,4 @@ def load_dictionary():
 
 if __name__ == '__main__':
     load_dictionary()
-
+    choice  = input('What are you planning to do?')
