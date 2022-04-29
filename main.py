@@ -5,5 +5,10 @@ def load_dictionary():
             words.append(myline.rstrip('\n'))
     print(words)
 
+
+#   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE
+#   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
+
 if __name__ == '__main__':
     load_dictionary()
+
