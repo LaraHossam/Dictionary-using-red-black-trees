@@ -51,18 +51,19 @@ class RedBlackTree():
             return
         self.fix_insert(node)
 
-        #Balancing tree after insertion
-    def fix_insert(self,new_node):
+        # Balancing tree after insertion
+
+    def fix_insert(self, new_node):
         while new_node.parent.color == 1:
             if new_node.parent.parent.right == new_node.parent:
                 uncle = new_node.parent.parent.left
                 # Parent is the right child of grandparent, and uncle is the left child of grandparent
-                if uncle.color == 1:   # Uncle is RED
+                if uncle.color == 1:  # Uncle is RED
                     uncle.color = 0
                     new_node.parent.color = 0
-                    new_node.parent.parent.color= 1
+                    new_node.parent.parent.color = 1
                     new_node = new_node.parent.parent
-                else: # if new_node's parent is red and uncle is BLACK
+                else:  # if new_node's parent is red and uncle is BLACK
                     if new_node == new_node.parent.left:
                         # If parent is the right child of grandparent, and new_node is the left child of parent
                         # RIGHT-LEFT case ---> Perform right rotation on parent
@@ -74,14 +75,14 @@ class RedBlackTree():
                         new_node.parent.parent.color = 1
                         self.left_rotate(new_node.parent.parent)
             else:
-                uncle =  new_node.parent.parent.right
+                uncle = new_node.parent.parent.right
                 # Parent is the left child of grandparent and uncle is the right child
-                if uncle.color == 1:   # Uncle is RED
+                if uncle.color == 1:  # Uncle is RED
                     uncle.color = 0
                     new_node.parent.color = 0
                     new_node.parent.parent.color = 1
                     new_node = new_node.parent.parent
-                else: # If uncle is BLACK
+                else:  # If uncle is BLACK
                     if new_node == new_node.parent.right:
                         new_node = new_node.parent
                         self.left_rotate(new_node)
@@ -147,13 +148,37 @@ class RedBlackTree():
     # def print_tree(self):
     #     self.__print_helper(self.root, "", True)
 
-#   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE - DELETE
-#   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
+    #   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE - DELETE
+    #   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
+
+    def search(self, root, value):
+        if root.value == value or root == self.Nil:
+            return root
+        if value < root.value:
+            return self.search(root.left, value)
+        else:
+            return self.search(root.right, value)
+
 
 if __name__ == '__main__':
     load_dictionary()
-    choice = 0
+    choice = 33
     RBT = RedBlackTree()
+    RBT.insert(20)
+    RBT.insert(3)
+    RBT.insert(1)
+    RBT.insert(4)
+    RBT.insert(7)
+    RBT.insert(8)
+    RBT.insert(9)
+    RBT.insert(33)
+    RBT.insert(99)
+    RBT.print_in_order(RBT.root)
+
+
+    # found = RBT.search(99)
+    # print(found.value)
+
     while int(choice) <= 5:
         choice = input(
             'Welcome! Here are all the possible choices:\n1. Print dictionary size\n2. Insert Word\n3. Look up'
