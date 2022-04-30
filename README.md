@@ -13,7 +13,7 @@ of the tree is always O(log n) and will never reach O(n) even in the worst case.
 
 ## Application:   ENGLISH DICTIONARY BASED ON RED-BLACK TREES IMPLEMENTATION
 1. **Load Dictionary** :
-2. **Print Dictionary size **:
+2. **Print Dictionary size**:
 3. **Insert Word** :
 4. **Look-up a Word** :
 5. **Delete a word**:
