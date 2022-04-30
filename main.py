@@ -7,7 +7,7 @@ def load_dictionary(node):
     with open('EN-US-Dictionary.txt', 'rt') as myfile:
         for myline in myfile:
             # words.append(myline.rstrip('\n'))
-            rbt.insert(myline.rstrip('\n'))
+            node.insert(myline.rstrip('\n'))
 
 
 class Node():
