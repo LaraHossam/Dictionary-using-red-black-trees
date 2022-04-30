@@ -1,6 +1,6 @@
 # Dictionary-using-red-black-trees
 
-In order to ensure that the height of the tree remains O(log n) after every insertion abd deletion, 
+In order to ensure that the height of the tree remains O(log n) after every insertion and deletion, 
 we can use a special tree called Red-Black Tree, with special properties that ensure that the height
 of the tree is always O(log n) and will never reach O(n) even in the worst case.
 
