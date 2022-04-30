@@ -1,8 +1,60 @@
 def load_dictionary():
     words = []
-    with open('D:\Documents\TERM 6\Data Structures 2\RedBlackTrees\EN-US-Dictionary.txt', 'rt') as myfile:
+    with open('EN-US-Dictionary.txt', 'rt') as myfile:
         for myline in myfile:
             words.append(myline.rstrip('\n'))
+
+class Node():
+    def __init__(self,value):
+        self.value=value
+        self.parent=None
+        self.left=None
+        self.right=None
+        self.color=1
+        #color=1 means red color=0 means black
+class RedBlackTree():
+    def __init__(self):
+        self.Nil=Node(0)
+        self.Nil.color=0 #black
+        self.Nil.left=None
+        self.Nil.rigth=None
+        self.root=self.Nil
+    def insert(self,key):
+        node=Node(key)
+        node.left=self.Nil
+        node.right=self.Nil
+        node.color=1
+        y=None
+        x=self.root
+        while x!=self.Nil:
+            y=x
+            if node.value<x.value:
+                x=x.left
+            else:
+                x=x.right
+        node.parent=y
+        if y==None:
+            self.root=node
+        elif node.value<y.value:
+            y.left=node
+        else:
+            y.right=node
+
+        if node.parent==None:
+            node.color=0
+            return
+        if node.parent.parent==None:
+            return
+        self.fix_insert(node)
+
+
+
+
+
+
+
+
+
 
 
 #   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE - DELETE
