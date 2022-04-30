@@ -202,10 +202,34 @@ class RedBlackTree():
 #   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE - DELETE
 #   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
 
+    def search(self, root, value):
+        if root.value == value or root == self.Nil:
+            return root
+        if value < root.value:
+            return self.search(root.left, value)
+        else:
+            return self.search(root.right, value)
+
+
 if __name__ == '__main__':
     load_dictionary()
-    choice = 0
+    choice = 33
     RBT = RedBlackTree()
+    RBT.insert(20)
+    RBT.insert(3)
+    RBT.insert(1)
+    RBT.insert(4)
+    RBT.insert(7)
+    RBT.insert(8)
+    RBT.insert(9)
+    RBT.insert(33)
+    RBT.insert(99)
+    RBT.print_in_order(RBT.root)
+
+
+    # found = RBT.search(99)
+    # print(found.value)
+
     while int(choice) <= 5:
         choice = input(
             'Welcome! Here are all the possible choices:\n1. Print dictionary size\n2. Insert Word\n3. Look up'
