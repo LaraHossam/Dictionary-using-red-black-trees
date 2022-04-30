@@ -4,58 +4,6 @@ def load_dictionary():
         for myline in myfile:
             words.append(myline.rstrip('\n'))
 
-class Node():
-    def __init__(self,value):
-        self.value=value
-        self.parent=None
-        self.left=None
-        self.right=None
-        self.color=1
-        #color=1 means red color=0 means black
-class RedBlackTree():
-    def __init__(self):
-        self.Nil=Node(0)
-        self.Nil.color=0 #black
-        self.Nil.left=None
-        self.Nil.rigth=None
-        self.root=self.Nil
-    def insert(self,key):
-        node=Node(key)
-        node.left=self.Nil
-        node.right=self.Nil
-        node.color=1
-        y=None
-        x=self.root
-        while x!=self.Nil:
-            y=x
-            if node.value<x.value:
-                x=x.left
-            else:
-                x=x.right
-        node.parent=y
-        if y==None:
-            self.root=node
-        elif node.value<y.value:
-            y.left=node
-        else:
-            y.right=node
-
-        if node.parent==None:
-            node.color=0
-            return
-        if node.parent.parent==None:
-            return
-        self.fix_insert(node)
-
-
-
-
-
-
-
-
-
-
 
 class Node():
     def __init__(self, value):
@@ -69,27 +17,27 @@ class Node():
 
 class RedBlackTree():
     def __init__(self):
-        self.Nil = Node(0)
-        self.Nil.color = 0  # black
-        self.Nil.left = None
-        self.Nil.rigth = None
-        self.root = self.Nil
+        self.nil = Node(0)
+        self.nil.color = 0  # black
+        self.nil.left = None
+        self.nil.right = None
+        self.root = self.nil
 
     def insert(self, key):
         node = Node(key)
-        node.left = self.Nil
-        node.right = self.Nil
+        node.left = self.nil
+        node.right = self.nil
         node.color = 1
         y = None
         x = self.root
-        while x != self.Nil:
+        while x != self.nil:
             y = x
             if node.value < x.value:
                 x = x.left
             else:
                 x = x.right
         node.parent = y
-        if y == None:
+        if y is None:
             self.root = node
         elif node.value < y.value:
             y.left = node
@@ -123,9 +71,9 @@ class RedBlackTree():
                         self.right_rotate(new_node)
                         # Parent is the right child of grandparent AND new node is the right child of parent
                         # RIGHT-RIGHT case ---> Perform another rotation
-                        new_node.parent.color = 0
-                        new_node.parent.parent.color = 1
-                        self.left_rotate(new_node.parent.parent)
+                    new_node.parent.color = 0
+                    new_node.parent.parent.color = 1
+                    self.left_rotate(new_node.parent.parent)
             else:
                 uncle = new_node.parent.parent.right
                 # Parent is the left child of grandparent and uncle is the right child
@@ -148,7 +96,7 @@ class RedBlackTree():
     def right_rotate(self, x):
         y = x.left
         x.left = y.right
-        if y.right != self.Nil:
+        if y.right != self.nil:
             y.right.parent = x
         y.parent = x.parent
         if x.parent is None:
@@ -163,7 +111,7 @@ class RedBlackTree():
     def left_rotate(self, x):
         y = x.right
         x.right = y.left
-        if y.left != self.Nil:
+        if y.left != self.nil:
             y.left.parent = x
 
         y.parent = x.parent
@@ -192,7 +140,7 @@ class RedBlackTree():
     #         self.__print_helper(node.right, indent, True)
 
     def print_in_order(self, new_node):
-        if new_node != self.Nil:
+        if new_node != self.nil:
             self.print_in_order(new_node.left)
             print(new_node.value)
             self.print_in_order(new_node.right)
@@ -204,16 +152,7 @@ class RedBlackTree():
     #   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
 
     def search(self, root, value):
-        if root.value == value or root == self.Nil:
-            return root
-        if value < root.value:
-            return self.search(root.left, value)
-        else:
-            return self.search(root.right, value)
-
-
-    def search(self, root, value):
-        if root.value == value or root == self.Nil:
+        if root.value == value or root == self.nil:
             return root
         if value < root.value:
             return self.search(root.left, value)
@@ -230,11 +169,19 @@ if __name__ == '__main__':
     RBT.insert(1)
     RBT.insert(4)
     RBT.insert(7)
-    RBT.insert(8)
+    RBT.insert(35)
+    RBT.insert(2)
+    RBT.insert(2560)
+    RBT.insert(7)
+    RBT.insert(999)
+    RBT.insert(23)
+    RBT.insert(65)
+    RBT.insert(123)
     RBT.insert(9)
-    RBT.insert(33)
-    RBT.insert(99)
     RBT.print_in_order(RBT.root)
+    found = RBT.search(RBT.root,7)
+    print(found.value)
+
     # found = RBT.search(99)
     # print(found.value)
 
