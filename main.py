@@ -169,12 +169,11 @@ if __name__ == '__main__':
     RBT.insert(1)
     RBT.insert(4)
     RBT.insert(7)
-    RBT.insert(8)
-    RBT.insert(9)
-    RBT.insert(33)
-    RBT.insert(99)
+    RBT.insert(35)
+    RBT.insert(2)
     RBT.print_in_order(RBT.root)
-
+    found = RBT.search(RBT.root,7)
+    print(found.value)
 
     # found = RBT.search(99)
     # print(found.value)
