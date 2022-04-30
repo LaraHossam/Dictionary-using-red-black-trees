@@ -1,8 +1,13 @@
-def load_dictionary():
+import matplotlib.pyplot as plt
+from pylab import rcParams
+
+
+def load_dictionary(node):
     words = []
     with open('EN-US-Dictionary.txt', 'rt') as myfile:
         for myline in myfile:
-            words.append(myline.rstrip('\n'))
+            # words.append(myline.rstrip('\n'))
+            rbt.insert(myline.rstrip('\n'))
 
 
 class Node():
@@ -145,12 +150,6 @@ class RedBlackTree():
             print(new_node.value)
             self.print_in_order(new_node.right)
 
-    # def print_tree(self):
-    #     self.__print_helper(self.root, "", True)
-
-    #   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE - DELETE
-    #   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
-
     def search(self, root, value):
         if root.value == value or root == self.nil:
             return root
@@ -159,32 +158,73 @@ class RedBlackTree():
         else:
             return self.search(root.right, value)
 
+    def size(self, node):
+        if node is None or node is self.nil:
+            return 0
+        else:
+            return self.size(node.left) + 1 + self.size(node.right)
+
+
+    def height(self,node):
+        # Check if the tree is empty
+        if node is None:
+            return 0
+            # Recursively call height of each node
+        leftAns = self.height(node.left)
+        rightAns = self.height(node.right)
+        # Return max(leftHeight, rightHeight) at each iteration
+        return max(leftAns, rightAns) + 1
+
+def plot_node(node, rb=True, level=1, posx=0, posy=0):
+    width = 2000.0 * (0.5 ** level)  # This will be used to space nodes horizontally
+    if node.color == 0 or rb == False:
+        plt.text(posx, posy, str(node.value), horizontalalignment='center', color='k', fontsize=10)
+    else:
+        plt.text(posx, posy, str(node.value), horizontalalignment='center', color='r', fontsize=10)
+
+    if node.left:
+        px = [posx, posx - width]
+        py = [posy - 1, posy - 15]
+        if node.left.color == 0 or rb == False:
+            plt.plot(px, py, 'k-')
+        else:
+            plt.plot(px, py, 'r-')
+        plot_node(node.left, rb, level + 1, posx - width, posy - 20)
+
+    if node.right:
+        plot_node(node.right, rb, level + 1, posx + width, posy - 20)
+        px = [posx, posx + width]
+        py = [posy - 1, posy - 15]
+        if node.right.color == 0 or rb == False:
+            plt.plot(px, py, 'k-')
+        else:
+            plt.plot(px, py, 'r-')
+
+
+def plot_tree(node, figsize=(10, 6)):
+    if node.color == 1:
+        rb = False
+    else:
+        rb = True
+    rcParams['figure.figsize'] = figsize
+    fig, ax = plt.subplots()
+    ax.axis('off')
+    plot_node(node, rb)
+    plt.title("Visualization of Red Black Tree")
+    plt.show()
+
+
+    #   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE - DELETE
+    #   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
+    # create a graphical representation of a binary tree (plot_tree, below, uses plot_node)
+
 
 if __name__ == '__main__':
-    load_dictionary()
     choice = 33
-    RBT = RedBlackTree()
-    RBT.insert(20)
-    RBT.insert(3)
-    RBT.insert(1)
-    RBT.insert(4)
-    RBT.insert(7)
-    RBT.insert(35)
-    RBT.insert(2)
-    RBT.insert(2560)
-    RBT.insert(7)
-    RBT.insert(999)
-    RBT.insert(23)
-    RBT.insert(65)
-    RBT.insert(123)
-    RBT.insert(9)
-    RBT.print_in_order(RBT.root)
-    found = RBT.search(RBT.root,7)
-    print(found.value)
-
-    # found = RBT.search(99)
-    # print(found.value)
-
+    rbt = RedBlackTree()
+    load_dictionary(rbt)
+    # plot_tree(rbt.root, figsize=(14, 4))
+    rbt.print_in_order(rbt.root)
     while int(choice) <= 5:
         choice = input(
             'Welcome! Here are all the possible choices:\n1. Print dictionary size\n2. Insert Word\n3. Look up'
