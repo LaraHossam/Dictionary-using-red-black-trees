@@ -129,21 +129,6 @@ class RedBlackTree():
         y.left = x
         x.parent = y
 
-    # def __print_helper(self, node, indent, last):
-    #     if node != self.Nil:
-    #         print(indent)
-    #         if last:
-    #             print("R----")
-    #             indent += "     "
-    #         else:
-    #             print("L----")
-    #             indent += "|    "
-    #
-    #         s_color = "RED" if node.color == 1 else "BLACK"
-    #         print(str(node.value) + "(" + s_color + ")")
-    #         self.__print_helper(node.left, indent, False)
-    #         self.__print_helper(node.right, indent, True)
-
     def print_in_order(self, new_node):
         if new_node != self.nil:
             self.print_in_order(new_node.left)
