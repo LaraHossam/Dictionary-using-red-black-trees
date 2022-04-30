@@ -3,10 +3,8 @@ from pylab import rcParams
 
 
 def load_dictionary(node):
-    words = []
     with open('EN-US-Dictionary.txt', 'rt') as myfile:
         for myline in myfile:
-            # words.append(myline.rstrip('\n'))
             node.insert(myline.rstrip('\n'))
 
 
@@ -208,8 +206,18 @@ if __name__ == '__main__':
     choice = 33
     rbt = RedBlackTree()
     load_dictionary(rbt)
-    # plot_tree(rbt.root, figsize=(14, 4))
     rbt.print_in_order(rbt.root)
+
+
+    rbt1 = RedBlackTree()
+    people1 = ['Bob', 'Alice', 'Doug', 'Kathy', 'Queen', 'Carol', 'Irene', 'Tom',
+               'Peter', 'Wanda', 'Yaakov', 'Luis', 'Zandra', 'Ronald', 'Mabel', 'Ursala', 'Eve',
+               'Frank', 'Ginger', 'Norm', 'Sarah', 'Jeff', 'Vince', 'Howard',
+               'Oprah']
+    for p in people1:
+        rbt1.insert(p)
+    plot_tree(rbt1.root, figsize=(14, 4))
+
     while int(choice) <= 5:
         choice = input(
             'Welcome! Here are all the possible choices:\n1. Print dictionary size\n2. Insert Word\n3. Look up'
