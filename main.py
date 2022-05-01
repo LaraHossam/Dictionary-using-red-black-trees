@@ -198,6 +198,7 @@ def plot_tree(node, figsize=(10, 6)):
     plt.title("Visualization of Red Black Tree")
     plt.show()
 
+
     #   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE
     #   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
     # create a graphical representation of a binary tree (plot_tree, below, uses plot_node)
@@ -234,10 +235,13 @@ if __name__ == '__main__':
                 print("Can't add a word that's already in the dictionary.")
         elif int(choice) == 3:
             word = input('Please enter the word you desire to look-up: ')
+
             if rbt.search(rbt.root, word.title()) is not rbt.nil:
                 print('YES, ' + word.title() + ' exists in the dictionary.')
             else:
                 print('NO, ' + word.title() + ' does not exist in the dictionary.')
+
+
         elif int(choice) == 4:
             print('Goodbye!')
             quit()
