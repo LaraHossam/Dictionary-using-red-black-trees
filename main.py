@@ -212,40 +212,48 @@ def plot_tree(node, figsize=(10, 6)):
     plt.show()
 
 
-    #   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE - DELETE
+    #   RED BLACK TREES IMPLEMENTATION : SEARCH - INSERT - PRINT TREE HEIGHT - PRINT TREE SIZE
     #   DICTIONARY FUNCTIONS: LOAD DICTIONARY - PRINT SIZE - INSERT A WORD - SEARCH FOR A WORD
     # create a graphical representation of a binary tree (plot_tree, below, uses plot_node)
 
 
 if __name__ == '__main__':
-    choice = 33
+    choice = 0
     rbt = RedBlackTree()
     load_dictionary(rbt)
-    rbt.print_in_order(rbt.root)
-
-
-    rbt1 = RedBlackTree()
-    people1 = ['Bob', 'Alice', 'Doug', 'Kathy', 'Queen', 'Carol', 'Irene', 'Tom',
-               'Peter', 'Wanda', 'Yaakov', 'Luis', 'Zandra', 'Ronald', 'Mabel', 'Ursala', 'Eve',
-               'Frank', 'Ginger', 'Norm', 'Sarah', 'Jeff', 'Vince', 'Howard',
-               'Oprah']
-    for p in people1:
-        rbt1.insert(p)
-    plot_tree(rbt1.root, figsize=(14, 4))
+    # rbt.print_in_order(rbt.root)
+    # rbt1 = RedBlackTree()
+    # people1 = ['Bob', 'Alice', 'Doug', 'Kathy', 'Queen', 'Carol', 'Irene', 'Tom',
+    #            'Peter', 'Wanda', 'Yaakov', 'Luis', 'Zandra', 'Ronald', 'Mabel', 'Ursala', 'Eve',
+    #            'Frank', 'Ginger', 'Norm', 'Sarah', 'Jeff', 'Vince', 'Howard',
+    #            'Oprah']
+    # for p in people1:
+    #     rbt1.insert(p)
+    # plot_tree(rbt1.root, figsize=(14, 4))
 
     while int(choice) <= 5:
         choice = input(
             'Welcome! Here are all the possible choices:\n1. Print dictionary size\n2. Insert Word\n3. Look up'
-            'word\n4. BONUS: Delete Word\n5. Exit program\nChoose the desired operation: ')
+            'word\n4. Exit program\nChoose the desired operation: ')
+        if choice.isnumeric() is False or int(choice) > 5:
+            print('Enter a valid number.')
+            choice = 0
 
         if int(choice) == 1:
-            print('Dictionary size is: ')
+            print('Dictionary size is: '+str(rbt.size(rbt.root)))
         elif int(choice) == 2:
             word = input('Please enter the word you desire to insert: ')
+            if rbt.search(rbt.root,word.title()) is not rbt.nil:
+                rbt.insert(word.title())
+                print(word.title() + ' inserted successfully.')
+            else:
+                print("Can't add a word that's already in the dictionary.")
         elif int(choice) == 3:
             word = input('Please enter the word you desire to look-up: ')
+            if rbt.search(rbt.root,word.title()) is not None:
+                print('YES, '+word.title()+' exists in the dictionary.')
+            else:
+                print('NO, '+word.title()+' does not exist in the dictionary.')
         elif int(choice) == 4:
-            word = input('Please enter the word you desire to delete: ')
-        elif int(choice) == 5:
             print('Goodbye!')
             quit()
