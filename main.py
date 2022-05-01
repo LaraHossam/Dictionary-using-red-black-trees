@@ -8,7 +8,7 @@ def load_dictionary(node):
             node.insert(myline.rstrip('\n'))
 
 
-class Node():
+class Node:
     def __init__(self, value):
         self.value = value
         self.parent = None
@@ -18,7 +18,7 @@ class Node():
         # color=1 means red color=0 means black
 
 
-class RedBlackTree():
+class RedBlackTree:
     def __init__(self):
         self.nil = Node(0)
         self.nil.color = 0  # black
@@ -134,8 +134,10 @@ class RedBlackTree():
             self.print_in_order(new_node.right)
 
     def search(self, root, value):
-        if root.value == value or root == self.nil:
+        if root.value == value:
             return root
+        if root == self.nil:
+            return self.nil
         if value < root.value:
             return self.search(root.left, value)
         else:
@@ -147,8 +149,7 @@ class RedBlackTree():
         else:
             return self.size(node.left) + 1 + self.size(node.right)
 
-
-    def height(self,node):
+    def height(self, node):
         # Check if the tree is empty
         if node is None:
             return 0
@@ -157,6 +158,7 @@ class RedBlackTree():
         rightAns = self.height(node.right)
         # Return max(leftHeight, rightHeight) at each iteration
         return max(leftAns, rightAns) + 1
+
 
 def plot_node(node, rb=True, level=1, posx=0, posy=0):
     width = 2000.0 * (0.5 ** level)  # This will be used to space nodes horizontally
@@ -223,20 +225,23 @@ if __name__ == '__main__':
             print('Enter a valid number.')
             choice = 0
         if int(choice) == 1:
-            print('Dictionary size is: '+str(rbt.size(rbt.root)))
+            print('Dictionary size is: ' + str(rbt.size(rbt.root)))
         elif int(choice) == 2:
             word = input('Please enter the word you desire to insert: ')
-            if rbt.search(rbt.root,word.title()) is not rbt.nil:
+            if rbt.search(rbt.root, word.title()) is rbt.nil:
                 rbt.insert(word.title())
                 print(word.title() + ' inserted successfully.')
             else:
                 print("Can't add a word that's already in the dictionary.")
         elif int(choice) == 3:
             word = input('Please enter the word you desire to look-up: ')
-            if rbt.search(rbt.root,word.title()) is not None:
-                print('YES, '+word.title()+' exists in the dictionary.')
+
+            if rbt.search(rbt.root, word.title()) is not rbt.nil:
+                print('YES, ' + word.title() + ' exists in the dictionary.')
             else:
-                print('NO, '+word.title()+' does not exist in the dictionary.')
+                print('NO, ' + word.title() + ' does not exist in the dictionary.')
+
+
         elif int(choice) == 4:
             print('Goodbye!')
             quit()
