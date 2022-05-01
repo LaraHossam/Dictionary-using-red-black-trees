@@ -181,6 +181,10 @@ class RedBlackTree():
 1. **Load Dictionary** :
 **Code snippets:**
 ```
+def load_dictionary(node):
+    with open('EN-US-Dictionary.txt', 'rt') as myfile:
+        for myline in myfile:
+            node.insert(myline.rstrip('\n'))
 ```
 2. **Print Dictionary size**
 3. **Insert Word** 
