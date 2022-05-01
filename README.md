@@ -40,8 +40,10 @@ class RedBlackTree():
 **Code snippets:**
 ```
     def search(self, root, value):
-        if root.value == value or root == self.nil:
+        if root.value == value:
             return root
+        if root == self.nil:
+            return self.nil
         if value < root.value:
             return self.search(root.left, value)
         else:
