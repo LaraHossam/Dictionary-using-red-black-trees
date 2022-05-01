@@ -216,7 +216,6 @@ if __name__ == '__main__':
     # for p in people1:
     #     rbt1.insert(p)
     # plot_tree(rbt1.root, figsize=(14, 4))
-
     while int(choice) <= 5:
         choice = input(
             'Welcome! Here are all the possible choices:\n1. Print dictionary size\n2. Insert Word\n3. Look up'
@@ -224,7 +223,6 @@ if __name__ == '__main__':
         if choice.isnumeric() is False or int(choice) > 5:
             print('Enter a valid number.')
             choice = 0
-
         if int(choice) == 1:
             print('Dictionary size is: ' + str(rbt.size(rbt.root)))
         elif int(choice) == 2:
