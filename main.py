@@ -231,6 +231,7 @@ if __name__ == '__main__':
             if rbt.search(rbt.root, word.casefold()) is rbt.nil:
                 rbt.insert(word.casefold())
                 print(word.casefold() + ' inserted successfully.')
+
             else:
                 print("Can't add a word that's already in the dictionary.")
         elif int(choice) == 3:
@@ -240,6 +241,7 @@ if __name__ == '__main__':
                 print('YES, ' + word.casefold() + ' exists in the dictionary.')
             else:
                 print('NO, ' + word.casefold() + ' does not exist in the dictionary.')
+
 
 
         elif int(choice) == 4:
