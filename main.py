@@ -5,7 +5,7 @@ from pylab import rcParams
 def load_dictionary(node):
     with open('EN-US-Dictionary.txt', 'rt') as myfile:
         for myline in myfile:
-            node.insert(myline.rstrip('\n'))
+            node.insert(myline.rstrip('\n').casefold())
 
 
 class Node:
@@ -228,18 +228,18 @@ if __name__ == '__main__':
             print('Dictionary size is: ' + str(rbt.size(rbt.root)))
         elif int(choice) == 2:
             word = input('Please enter the word you desire to insert: ')
-            if rbt.search(rbt.root, word.title()) is rbt.nil:
-                rbt.insert(word.title())
-                print(word.title() + ' inserted successfully.')
+            if rbt.search(rbt.root, word.casefold()) is rbt.nil:
+                rbt.insert(word.casefold())
+                print(word.casefold() + ' inserted successfully.')
             else:
                 print("Can't add a word that's already in the dictionary.")
         elif int(choice) == 3:
             word = input('Please enter the word you desire to look-up: ')
 
-            if rbt.search(rbt.root, word.title()) is not rbt.nil:
-                print('YES, ' + word.title() + ' exists in the dictionary.')
+            if rbt.search(rbt.root, word.casefold()) is not rbt.nil:
+                print('YES, ' + word.casefold() + ' exists in the dictionary.')
             else:
-                print('NO, ' + word.title() + ' does not exist in the dictionary.')
+                print('NO, ' + word.casefold() + ' does not exist in the dictionary.')
 
 
         elif int(choice) == 4:
