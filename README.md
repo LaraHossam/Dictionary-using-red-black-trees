@@ -159,7 +159,7 @@ class RedBlackTree():
 ```
  def height(self,node):
         # Check if the tree is empty
-        if node is None:
+        if node is self.nil:
             return 0
             # Recursively call height of each node
         leftAns = self.height(node.left)
